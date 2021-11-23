@@ -22,8 +22,8 @@ function App() {
   return (
     <div id="container">
       <div>
-        <h2>Enter your timesheet data</h2>
-        <textarea id="fname" name="firstname" placeholder="Your name.." />
+        <h2>Enter your attendance list</h2>
+        <textarea id="fname" name="firstname" placeholder="Paste your attendance list here...." />
         <input type="submit" onClick={calculateData} value="Calculate Time" />
       </div>
       {
