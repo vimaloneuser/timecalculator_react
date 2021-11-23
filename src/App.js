@@ -8,7 +8,7 @@ function App() {
   const [data, setData] = useState(null);
   const calculateData = () => {
     let csvData = document.getElementById("fname").value;
-    axios.post("http://192.168.97.98:5000/csv", { csvData }).then(res => {
+    axios.post("https://time-calculator-node.herokuapp.com/csv", { csvData }).then(res => {
       console.log(res)
       setData(res.data.result);
       toastr.success('Your time is caluculated')
