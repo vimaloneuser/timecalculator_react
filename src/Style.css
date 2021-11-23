@@ -1,3 +1,5 @@
+
+
 input[type=text], select {
     width: 100%;
     padding: 12px 20px;
@@ -41,3 +43,49 @@ input[type=text], select {
   .section{
     border: 1px solid black;
   }
+  .sectionContainer{
+    display: inline-flex;
+    width: 100vw;
+    flex-direction: row;
+  }
+  .column {
+    float: left;
+    width: 45%;
+    padding: 0 10px;
+  }
+  
+  /* Remove extra left and right margins, due to padding */
+  .row {margin: 0 -5px;}
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* Responsive columns */
+  @media screen and (max-width: 950px) {
+    .column {
+      width: 100%;
+      display: block;
+      margin-bottom: 20px;
+    }
+  }
+  
+  /* Style the counter cards */
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(44, 44, 44, 0.158);
+    padding: 16px;
+    text-align: center;
+    background-color: #fdfdfd;
+    min-height: 280px ;
+  }
+.loader{
+  position: absolute;
+  height: 91.5%;
+  width: 91.5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
