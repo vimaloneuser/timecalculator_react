@@ -149,12 +149,12 @@ function App() {
       {
         data &&
         <div>
-          <h3>Office time status :
-            <b style={{ color: data.isOfficeTimeCompleted ? "green" : "red", fontSize: 20 }}>{data.isOfficeTimeCompleted ? " Completed" : "In Progress"}
+          <h3>Office time Status :
+            <b style={{ color: data.isOfficeTimeCompleted ? "green" : "red", fontSize: 20 }}>{data.isOfficeTimeCompleted ? " Completed" : " In Progress"}
             </b>
           </h3>
-          <h3>Working time status :
-            <b style={{ color: data.isWorkingTimeCompleted ? "green" : "red", fontSize: 20 }}>{data.isWorkingTimeCompleted ? " Completed" : "in Progress"}
+          <h3>Working time Status :
+            <b style={{ color: data.isWorkingTimeCompleted ? "green" : "red", fontSize: 20 }}>{data.isWorkingTimeCompleted ? " Completed" : " In Progress"}
             </b></h3>
           <div class="row">
             <div class="column">
