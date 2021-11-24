@@ -81,7 +81,7 @@ input[type=text], select {
     background-color: #fdfdfd;
   }
 .loader{
-  position: absolute;
+  position: fixed;
   height: 91.5%;
   width: 91.5%;
   display: flex;
