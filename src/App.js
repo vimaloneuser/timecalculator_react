@@ -194,7 +194,7 @@ function App() {
                       <input id="appt-time" onChange={e => timeChange(e)} type="time" name="appt-time"></input>
                       <div>
                         <button style={{ marginRight: 10 }} className="btn" onClick={() => checkEstimation(true)}>Clock time based</button>
-                        <button style={{ marginLeft: 10 }} className="btn" onClick={() => checkEstimation(false)}>Hour based</button>
+                        <button style={{ marginLeft: 10 }} className="btn" onClick={() => checkEstimation(false)}>Hourly based</button>
                       </div>
                     </div>
                     {
@@ -203,7 +203,7 @@ function App() {
                     }
                     {
                       backTime &&
-                      <h3>Your expected in time will be : <b style={{ color: "#D76100", fontSize: 22 }}>{backTime}</b></h3>
+                      <h3>Your expected In-time will be : <b style={{ color: "#D76100", fontSize: 22 }}>{backTime}</b></h3>
                     }
                   </>
                 }
