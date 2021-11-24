@@ -5,10 +5,13 @@ import toastr from 'toastr';
 import "./toastr.min.css";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
+import moment from 'moment';
 
 function App() {
   const [data, setData] = useState(null);
   const [loader, setLoader] = useState(false);
+  const [time, settime] = useState("00:00");
+  const [estimatedTime, setestimatedTime] = useState(null);
   const calculateData = () => {
     let csvData = document.getElementById("fname").value;
     setLoader(true);
@@ -26,7 +29,67 @@ function App() {
     })
   }
 
-  console.log(data)
+  const timeChange = (e) => {
+    settime(e.target.value);
+  }
+
+  function timestrToSec(timestr) {
+    var parts = timestr.split(":");
+    return (parts[0] * 3600) +
+      (parts[1] * 60) +
+      (+parts[2]);
+  }
+
+  function pad(num) {
+    if (num < 10) {
+      return "0" + num;
+    } else {
+      return "" + num;
+    }
+  }
+
+  function formatTime(seconds) {
+    return [pad(Math.floor(seconds / 3600)),
+    pad(Math.floor(seconds / 60) % 60),
+    pad(seconds % 60),
+    ].join(":");
+  }
+
+  function strToMins(t) {
+    var s = t.split(":");
+    return Number(s[0]) * 60 + Number(s[1]);
+  }
+
+  function minsToStr(t) {
+    return Math.trunc(t / 60) + ':' + ('00' + t % 60).slice(-2);
+  }
+
+
+  const checkEstimation = () => {
+    if (time != "00:00") {
+      var cTime = moment().format("HH:mm:ss")
+      if (cTime > time + ":00") {
+        toastr.error("Time is invalid")
+        return;
+      }
+      else {
+        var result = minsToStr(strToMins(time) - strToMins(cTime));
+        console.log(result)
+        let totaltime = formatTime(timestrToSec(data.completedWorkingTime) + timestrToSec(result + ":00"));
+        var timeString = totaltime;
+        var H = +timeString.substr(0, 2);
+        var h = H % 12 || 12;
+        var ampm = (H < 12 || H === 24) ? " AM" : " PM";
+        timeString = h + timeString.substr(2, 3) + ampm;
+        setestimatedTime(timeString);
+        toastr.success('Your time is caluculated')
+      }
+    }
+    else {
+      toastr.error("Time is invalid")
+      return;
+    }
+  }
 
   return (
     <div id="container">
@@ -57,7 +120,7 @@ function App() {
             </b></h3>
           <div class="row">
             <div class="column">
-              <div className="card">
+              <div className="card" style={{ minHeight: data.isWorkingTimeCompleted ? 280 : 420 }}>
                 <h3>Completed working time :
                   <b style={{ color: "#276DC6", fontSize: 25 }}> {data.completedWorkingTime}</b></h3>
                 <h3>Remaining working time : <b style={{ color: "#00AED1" }}> {data.remainingWorkingTime}</b></h3>
@@ -71,7 +134,7 @@ function App() {
             </div>
 
             <div class="column">
-              <div className="card">
+              <div className="card" style={{ minHeight: data.isWorkingTimeCompleted ? 280 : 420 }}>
                 {
                   data?.totalBreaktime &&
                   <h3>Total break time : <b style={{ color: "#8250DF", fontSize: 22 }}>{data.totalBreaktime}</b></h3>
@@ -83,6 +146,23 @@ function App() {
                 {
                   data?.completionTimeIfTakeBreak &&
                   <h3>Completion time if we take remaning break ? : <b style={{ color: "#8250DF", fontSize: 22 }}>{data.completionTimeIfTakeBreak}</b></h3>
+                }
+                <br />
+                {
+                  !data.isWorkingTimeCompleted &&
+                  <>
+                    <div className="timeContainer">
+                      <h3>Break time Pre-calculation</h3>
+                      <input id="appt-time" onChange={e => timeChange(e)} type="time" name="appt-time"></input>
+                      <div>
+                        <button className="btn" onClick={checkEstimation}>Submit</button>
+                      </div>
+                    </div>
+                    {
+                      estimatedTime &&
+                      <h3>Your working time will be completed at : <b style={{ color: "#8250DF", fontSize: 22 }}>{estimatedTime}</b></h3>
+                    }
+                  </>
                 }
               </div>
             </div>
