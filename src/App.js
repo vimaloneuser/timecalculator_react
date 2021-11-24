@@ -109,8 +109,8 @@ function App() {
               var _timeString = _backTime;
               var _H = +_timeString.substr(0, 2);
               var _h = _H % 12 || 12;
-              var ampm = (_H < 12 || _H === 24) ? " AM" : " PM";
-              _timeString = _h + _timeString.substr(2, 3) + ampm;
+              var _ampm = (_H < 12 || _H === 24) ? " AM" : " PM";
+              _timeString = _h + _timeString.substr(2, 3) + _ampm;
               setbackTime(_timeString);
 
               toastr.success('Your time is caluculated');
