@@ -183,7 +183,7 @@ function App() {
                 }
                 {
                   data?.completionTimeIfTakeBreak &&
-                  <h3>Completion time if you take remaning break ? : <b style={{ color: "#8250DF", fontSize: 22 }}>{data.completionTimeIfTakeBreak}</b></h3>
+                  <h3>Your time will be completed with remaining break at : <b style={{ color: "#8250DF", fontSize: 22 }}>{data.completionTimeIfTakeBreak}</b></h3>
                 }
                 <br />
                 {
