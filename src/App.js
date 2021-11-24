@@ -171,7 +171,7 @@ function App() {
               </div>
             </div>
 
-            <div class="column">
+            <div class="column2">
               <div className="card" style={{ minHeight: data.isWorkingTimeCompleted ? 280 : 420 }}>
                 {
                   data?.totalBreaktime &&

@@ -50,12 +50,17 @@ input[type=text], select {
   }
   .column {
     float: left;
-    width: 45%;
+    width: 40%;
+    padding: 0 10px;
+  }
+  .column2 {
+    float: left;
+    width: 56%;
     padding: 0 10px;
   }
   
   /* Remove extra left and right margins, due to padding */
-  .row {margin: 0 -5px;}
+  .row {margin: 0 -5px; }
   
   /* Clear floats after the columns */
   .row:after {
@@ -67,6 +72,11 @@ input[type=text], select {
   /* Responsive columns */
   @media screen and (max-width: 950px) {
     .column {
+      width: 100%;
+      display: block;
+      margin-bottom: 20px;
+    }
+    .column2 {
       width: 100%;
       display: block;
       margin-bottom: 20px;
