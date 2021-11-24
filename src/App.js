@@ -66,7 +66,7 @@ function App() {
 
 
   const checkEstimation = () => {
-    if (time != "00:00") {
+    if (time !== "00:00") {
       var cTime = moment().format("HH:mm:ss")
       if (cTime > time + ":00") {
         toastr.error("Time is invalid")
