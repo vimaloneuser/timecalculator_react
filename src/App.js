@@ -77,12 +77,12 @@ function App() {
         let csvData = document.getElementById("fname").value;
         setLoader(true);
         axios.post("https://time-calculator-node.herokuapp.com/csv", { csvData }).then(res => {
-          setLoader(false);
-          if (!res.data?.result)
+          if (!res.data?.result) {
+            setLoader(false);
             toastr.error("Something went wrong! Try again")
+          }
           else {
             setData(res.data.result);
-
             setTimeout(() => {
               var result = minsToStr(strToMins(time) - strToMins(cTime));
               console.log(result, "diff")
@@ -96,7 +96,8 @@ function App() {
               var ampm = (H < 12 || H === 24) ? " AM" : " PM";
               timeString = h + timeString.substr(2, 3) + ampm;
               setestimatedTime(timeString);
-              toastr.success('Your time is caluculated')
+              toastr.success('Your time is caluculated');
+              setLoader(false);
             }, 1000);
           }
         }).catch(err => {
