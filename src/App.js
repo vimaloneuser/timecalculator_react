@@ -11,6 +11,7 @@ function App() {
   const [data, setData] = useState(null);
   const [loader, setLoader] = useState(false);
   const [time, settime] = useState("00:00");
+  const [backTime, setbackTime] = useState(null);
   const [estimatedTime, setestimatedTime] = useState(null);
   const calculateData = () => {
     let csvData = document.getElementById("fname").value;
@@ -65,15 +66,14 @@ function App() {
   }
 
 
-  const checkEstimation = () => {
+  const checkEstimation = (type) => {
     if (time !== "00:00") {
       var cTime = moment().format("HH:mm")
-      if (cTime + ":00" > time + ":00") {
+      if (type && (cTime + ":00" > time + ":00")) {
         toastr.error("Time is invalid")
         return;
       }
       else {
-
         let csvData = document.getElementById("fname").value;
         setLoader(true);
         axios.post("https://time-calculator-node.herokuapp.com/csv", { csvData }).then(res => {
@@ -84,7 +84,11 @@ function App() {
           else {
             setData(res.data.result);
             setTimeout(() => {
-              var result = minsToStr(strToMins(time) - strToMins(cTime));
+              var result;
+              if (type)
+                result = minsToStr(strToMins(time) - strToMins(cTime));
+              else
+                result = time;
               console.log(result, "diff")
               let totaltime = formatTime(timestrToSec(cTime + ":00") + timestrToSec(data.remainingWorkingTime + ":00"));
               console.log(totaltime, "total 1")
@@ -96,6 +100,19 @@ function App() {
               var ampm = (H < 12 || H === 24) ? " AM" : " PM";
               timeString = h + timeString.substr(2, 3) + ampm;
               setestimatedTime(timeString);
+              let _backTime;
+              if (type)
+                _backTime = time;
+              else
+                _backTime = formatTime(timestrToSec(cTime + ":00") + timestrToSec(time + ":00"));
+
+              var timeString = _backTime;
+              var H = +timeString.substr(0, 2);
+              var h = H % 12 || 12;
+              var ampm = (H < 12 || H === 24) ? " AM" : " PM";
+              timeString = h + timeString.substr(2, 3) + ampm;
+              setbackTime(timeString);
+
               toastr.success('Your time is caluculated');
               setLoader(false);
             }, 1000);
@@ -176,12 +193,17 @@ function App() {
                       <h3>Break time Pre-calculation</h3>
                       <input id="appt-time" onChange={e => timeChange(e)} type="time" name="appt-time"></input>
                       <div>
-                        <button className="btn" onClick={checkEstimation}>Submit</button>
+                        <button style={{ marginRight: 10 }} className="btn" onClick={() => checkEstimation(true)}>Clock time based</button>
+                        <button style={{ marginLeft: 10 }} className="btn" onClick={() => checkEstimation(false)}>Hour based</button>
                       </div>
                     </div>
                     {
                       estimatedTime &&
-                      <h3>Your working time will be completed at : <b style={{ color: "#8250DF", fontSize: 22 }}>{estimatedTime}</b></h3>
+                      <h3>Your working time will be completed at : <b style={{ color: "#D76100", fontSize: 22 }}>{estimatedTime}</b></h3>
+                    }
+                    {
+                      backTime &&
+                      <h3>Your expected in time will be : <b style={{ color: "#D76100", fontSize: 22 }}>{backTime}</b></h3>
                     }
                   </>
                 }
