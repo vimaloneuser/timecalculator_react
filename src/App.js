@@ -106,12 +106,12 @@ function App() {
               else
                 _backTime = formatTime(timestrToSec(cTime + ":00") + timestrToSec(time + ":00"));
 
-              var timeString = _backTime;
-              var H = +timeString.substr(0, 2);
-              var h = H % 12 || 12;
-              var ampm = (H < 12 || H === 24) ? " AM" : " PM";
-              timeString = h + timeString.substr(2, 3) + ampm;
-              setbackTime(timeString);
+              var _timeString = _backTime;
+              var _H = +_timeString.substr(0, 2);
+              var _h = _H % 12 || 12;
+              var ampm = (_H < 12 || _H === 24) ? " AM" : " PM";
+              _timeString = _h + _timeString.substr(2, 3) + ampm;
+              setbackTime(_timeString);
 
               toastr.success('Your time is caluculated');
               setLoader(false);
