@@ -182,7 +182,7 @@ function App() {
                 }
                 {
                   data?.remainingBreakTime &&
-                  <h3>Reamaining break time : <b style={{ color: "#8250DF", fontSize: 20 }}>{data.remainingBreakTime}</b></h3>
+                  <h3>Remaining break time : <b style={{ color: "#8250DF", fontSize: 20 }}>{data.remainingBreakTime}</b></h3>
                 }
                 {
                   data?.completionTimeIfTakeBreak &&
