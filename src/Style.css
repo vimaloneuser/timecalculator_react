@@ -121,3 +121,12 @@ input[type=text], select {
   border-radius: 10px;
   padding: 5px;
 }
+
+.count{
+  float: right;
+  font-size: 18px;
+  color: #20022e;
+}
+.count b{
+  color: #01b136;
+}

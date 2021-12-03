@@ -7,8 +7,27 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
 import moment from 'moment';
 import TimePicker from 'react-time-picker';
+import io from "socket.io-client";
+
+const ENDPOINT = 'https://time-calculator-node.herokuapp.com/';
+
+let socket;
 
 function App() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    socket = io(ENDPOINT);
+    socket.emit('join', "",
+      () => { console.log("joined") });
+  }, []);
+
+  useEffect(() => {
+    socket.on('countUpdate', data => {
+      setCount(data);
+    });
+  }, []);
+
   const [data, setData] = useState(null);
   const [loader, setLoader] = useState(false);
   const [time, settime] = useState("00:00");
@@ -160,6 +179,7 @@ function App() {
         </div>
       }
       <div>
+        {count && <span className="count" >Active user : <b>{count}</b></span>}
         <h2>Enter your attendance list</h2>
         <textarea id="fname" name="firstname" placeholder="Paste your attendance list here...." />
         <input type="submit" onClick={calculateData} value="Calculate Time" />
