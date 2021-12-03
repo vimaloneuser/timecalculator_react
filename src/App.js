@@ -36,6 +36,7 @@ function App() {
     })
   }
 
+  console.log(time)
   function timestrToSec(timestr) {
     var parts = timestr.split(":");
     return (parts[0] * 3600) +
@@ -69,6 +70,10 @@ function App() {
 
 
   const checkEstimation = (type) => {
+    if (!time) {
+      toastr.error("input can to be blank!");
+      return;
+    }
     if (time !== "00:00") {
       var cTime = moment().format("HH:mm")
       if (type && (cTime + ":00" > time + ":00")) {
