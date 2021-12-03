@@ -179,7 +179,7 @@ function App() {
         </div>
       }
       <div>
-        {count && <span className="count" >Active user : <b>{count}</b></span>}
+        {count > 0 && <span className="count" >Active user : <b>{count}</b></span>}
         <h2>Enter your attendance list</h2>
         <textarea id="fname" name="firstname" placeholder="Paste your attendance list here...." />
         <input type="submit" onClick={calculateData} value="Calculate Time" />
