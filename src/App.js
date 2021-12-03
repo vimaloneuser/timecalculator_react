@@ -6,6 +6,7 @@ import "./toastr.min.css";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
 import moment from 'moment';
+import TimePicker from 'react-time-picker';
 
 function App() {
   const [data, setData] = useState(null);
@@ -15,6 +16,11 @@ function App() {
   const [estimatedTime, setestimatedTime] = useState(null);
   const calculateData = () => {
     let csvData = document.getElementById("fname").value;
+    if (!csvData) {
+      toastr.error("input can to be blank!");
+      return;
+    }
+
     setLoader(true);
     axios.post("https://time-calculator-node.herokuapp.com/csv", { csvData }).then(res => {
       setLoader(false);
@@ -28,10 +34,6 @@ function App() {
       setLoader(false);
       toastr.error(err.response.data.error)
     })
-  }
-
-  const timeChange = (e) => {
-    settime(e.target.value);
   }
 
   function timestrToSec(timestr) {
@@ -146,6 +148,7 @@ function App() {
         <textarea id="fname" name="firstname" placeholder="Paste your attendance list here...." />
         <input type="submit" onClick={calculateData} value="Calculate Time" />
       </div>
+
       {
         data &&
         <div>
@@ -191,7 +194,13 @@ function App() {
                   <>
                     <div className="timeContainer">
                       <h3>Break time Pre-calculation</h3>
-                      <input id="appt-time" onChange={e => timeChange(e)} type="time" name="appt-time"></input>
+                      <TimePicker
+                        onChange={settime}
+                        format="HH:mm"
+                        value={time}
+                        disableClock
+                      />
+                      {/* <input id="appt-time" onChange={e => timeChange(e)} type="time" name="appt-time"></input> */}
                       <div>
                         <button style={{ marginRight: 10 }} className="btn" onClick={() => checkEstimation(true)}>Clock time based</button>
                         <button style={{ marginLeft: 10 }} className="btn" onClick={() => checkEstimation(false)}>Hourly based</button>
