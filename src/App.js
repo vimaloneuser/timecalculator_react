@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './Style.css'
 import axios from 'axios';
 import toastr from 'toastr';
@@ -35,6 +35,17 @@ function App() {
       toastr.error(err.response.data.error)
     })
   }
+
+  useEffect(() => {
+    const unloadCallback = (event) => {
+      event.preventDefault();
+      event.returnValue = "";
+      return "";
+    };
+
+    window.addEventListener("beforeunload", unloadCallback);
+    return () => window.removeEventListener("beforeunload", unloadCallback);
+  }, []);
 
   console.log(time)
   function timestrToSec(timestr) {
