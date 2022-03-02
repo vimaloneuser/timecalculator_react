@@ -26,7 +26,7 @@ function App() {
   useEffect(() => {
     socket = io(ENDPOINT);
     socket.emit('join', "",
-      () => {  });
+      () => { });
   }, []);
 
   useEffect(() => {
@@ -216,56 +216,56 @@ function App() {
 
   const calculateImp = (taksss) => {
     let _todo = taksss.task;
-      let tempArr = [];
-      let doitNow = _todo.filter(item => item?.important === true && item?.argent === true);
-      if (doitNow.length > 0) {
-        doitNow.map(im => {
-          tempArr.push({
-            ...im,
-            priorityLevel: 10
-          })
+    let tempArr = [];
+    let doitNow = _todo.filter(item => item?.important === true && item?.argent === true);
+    if (doitNow.length > 0) {
+      doitNow.map(im => 
+        tempArr.push({
+          ...im,
+          priorityLevel: 10
         })
-      }
+      )
+    }
 
-      let delegate = _todo.filter(item => item?.important === false && item?.argent === true);
-      if (delegate.length > 0) {
-        delegate.map(im => {
-          tempArr.push({
-            ...im,
-            priorityLevel: 6
-          })
+    let delegate = _todo.filter(item => item?.important === false && item?.argent === true);
+    if (delegate.length > 0) {
+      delegate.map(im => 
+        tempArr.push({
+          ...im,
+          priorityLevel: 6
         })
-      }
+      )
+    }
 
-      let schdule = _todo.filter(item => item?.important === true && item?.argent === false);
-      if (schdule.length > 0) {
-        schdule.map(im => {
-          tempArr.push({
-            ...im,
-            priorityLevel: 4
-          })
+    let schdule = _todo.filter(item => item?.important === true && item?.argent === false);
+    if (schdule.length > 0) {
+      schdule.map(im => 
+        tempArr.push({
+          ...im,
+          priorityLevel: 4
         })
-      }
+      )
+    }
 
-      let drop = _todo.filter(item => item?.important === false && item?.argent === false);
-      if (drop.length > 0) {
-        drop.map(im => {
-          tempArr.push({
-            ...im,
-            priorityLevel: 2
-          })
+    let drop = _todo.filter(item => item?.important === false && item?.argent === false);
+    if (drop.length > 0) {
+      drop.map(im => 
+        tempArr.push({
+          ...im,
+          priorityLevel: 2
         })
-      }
-      localStorage.setItem('tasks', JSON.stringify({
-        date: taksss.date,
-        task: tempArr,
-        completed: taksss.completed
-      }));
-      setTodo({
-        date: taksss.date,
-        task: tempArr,
-        completed: taksss.completed
-      });
+      )
+    }
+    localStorage.setItem('tasks', JSON.stringify({
+      date: taksss.date,
+      task: tempArr,
+      completed: taksss.completed
+    }));
+    setTodo({
+      date: taksss.date,
+      task: tempArr,
+      completed: taksss.completed
+    });
   }
 
   return (
@@ -276,6 +276,7 @@ function App() {
         style={customStyles}
       >
         <img
+          alt='image'
           style={{
             height: 30, width: 30,
             float: "right",
@@ -497,6 +498,7 @@ function App() {
                   }}
                 >
                   <img
+                    alt='image'
                     style={{
                       height: 30, width: 30
                     }}
@@ -552,6 +554,7 @@ function App() {
                               }
 
                               <img
+                                alt='image'
                                 src={require('./assets/delete.png').default}
                                 style={{
                                   height: 15,
