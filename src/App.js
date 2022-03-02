@@ -199,7 +199,7 @@ function App() {
     }
     else {
       let _data = JSON.parse(tasks);
-      if (_data?.date != date) {
+      if (_data?.date !== date) {
         let obj = {
           date: date,
           task: [],
@@ -396,7 +396,7 @@ function App() {
           <span>Task</span>
         </div>
       </section>
-      {2 > 0 && <span className="count" >Active user : <b>{2}</b></span>}
+      {2 > 0 && <span className="count" >Active user : <b>{count}</b></span>}
 
       {
         tab === 'timeSheet' ?
@@ -518,7 +518,7 @@ function App() {
                             <div>
                               <span>{index + 1 + ". " + item.title}</span>
                               {
-                                item?.description != '' && item?.description != null &&
+                                item?.description !== '' && item?.description !== null &&
                                 <p>- {item.description}</p>
                               }
 
@@ -527,7 +527,7 @@ function App() {
                               className='rightBody'
                             >
                               {
-                                item?.priorityLevel != undefined &&
+                                item?.priorityLevel !== undefined &&
                                 <>
                                   <span
                                     style={{
@@ -603,7 +603,7 @@ function App() {
                             <div>
                               <span>{index + 1 + ". " + item.title}</span>
                               {
-                                item?.description != '' && item?.description != null &&
+                                item?.description !== '' && item?.description !== null &&
                                 <p>- {item.description}</p>
                               }
 
@@ -612,7 +612,7 @@ function App() {
                               className='rightBody'
                             >
                               {
-                                item?.priorityLevel != undefined &&
+                                item?.priorityLevel !== undefined &&
                                 <>
                                   <span
                                     style={{
