@@ -7,6 +7,7 @@ input[type=text], select {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    margin-top: 5px;
   }
 
   textarea{
@@ -81,6 +82,9 @@ input[type=text], select {
       display: block;
       margin-bottom: 20px;
     }
+    .mainSec {
+      margin-top: 25px;
+    }
   }
   
   /* Style the counter cards */
@@ -129,4 +133,97 @@ input[type=text], select {
 }
 .count b{
   color: #01b136;
+}
+.activeTab{
+background: #276DC6;
+justify-content: center;
+align-items: center;
+width: 100px;
+border-radius: 5px;
+text-align: center;
+}
+.activeTab span{
+  color: #fdfdfd;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.inActiveTab{
+  background: #fff;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  border-radius: 5px;
+  text-align: center;
+  }
+.inActiveTab span{
+    color: #276DC6;
+    font-size: 15px;
+    font-weight: bold;
+  }
+
+.tabs{
+  position: absolute;
+  width: 200px;
+left: 0;
+right: 0;
+margin-left: auto;
+margin-right: auto;
+display: inline-flex;
+border: #20022e solid 0.5px;
+border-radius: 5px;
+cursor: pointer;
+}
+.manageTask{
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+.addTodoButton{
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #276DC6;
+  border: 2px solid #fff;
+  height: 20px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+.addTodoButton span{
+  color: #fff;
+  margin-left: 5px;
+}
+
+.pending{
+  color: #276DC6;
+}
+.done{
+  color: #01b136;
+}
+.taskBody{
+  width: 90%;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid black;
+  margin-bottom: 5px;
+}
+.taskBody div span {
+  font-size: 18px;
+  font-weight: bold;
+  float: left;
+  text-align: left;
+  
+}
+.rightBody{
+  display: inline-flex;
+  align-items: center;
+}
+.rightBody span{
+  margin-right: 10px;
+  font-size: 10px;
+}
+.checkBox{
+  height: 25px;
+  width: 25px;
 }
