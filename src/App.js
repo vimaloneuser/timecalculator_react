@@ -276,7 +276,7 @@ function App() {
         style={customStyles}
       >
         <img
-          alt='image'
+          alt='close modal'
           style={{
             height: 30, width: 30,
             float: "right",
@@ -318,6 +318,7 @@ function App() {
         style={customStyles}
       >
         <img
+          alt='close modal'
           style={{
             height: 30, width: 30,
             float: "right",
@@ -498,7 +499,7 @@ function App() {
                   }}
                 >
                   <img
-                    alt='image'
+                  alt='add todo'
                     style={{
                       height: 30, width: 30
                     }}
@@ -554,7 +555,7 @@ function App() {
                               }
 
                               <img
-                                alt='image'
+                                alt='delete todo'
                                 src={require('./assets/delete.png').default}
                                 style={{
                                   height: 15,
