@@ -219,7 +219,7 @@ function App() {
     let tempArr = [];
     let doitNow = _todo.filter(item => item?.important === true && item?.argent === true);
     if (doitNow.length > 0) {
-      doitNow.map(im => 
+      doitNow.map(im =>
         tempArr.push({
           ...im,
           priorityLevel: 10
@@ -229,7 +229,7 @@ function App() {
 
     let delegate = _todo.filter(item => item?.important === false && item?.argent === true);
     if (delegate.length > 0) {
-      delegate.map(im => 
+      delegate.map(im =>
         tempArr.push({
           ...im,
           priorityLevel: 6
@@ -239,7 +239,7 @@ function App() {
 
     let schdule = _todo.filter(item => item?.important === true && item?.argent === false);
     if (schdule.length > 0) {
-      schdule.map(im => 
+      schdule.map(im =>
         tempArr.push({
           ...im,
           priorityLevel: 4
@@ -249,7 +249,7 @@ function App() {
 
     let drop = _todo.filter(item => item?.important === false && item?.argent === false);
     if (drop.length > 0) {
-      drop.map(im => 
+      drop.map(im =>
         tempArr.push({
           ...im,
           priorityLevel: 2
@@ -266,6 +266,15 @@ function App() {
       task: tempArr,
       completed: taksss.completed
     });
+  }
+
+  const copyToClipboard = () => {
+    var range = document.createRange();
+    range.selectNode(document.getElementById("taskUpdate"));
+    window.getSelection().removeAllRanges(); // clear current selection
+    window.getSelection().addRange(range); // to select text
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();// to deselect
   }
 
   return (
@@ -351,7 +360,7 @@ function App() {
           <label for="title">Title</label>
           <input type="text" id="title" name="title" placeholder="your task title.." required />
           <p />
-          <label for="taskDesc">Task argent</label>
+          <label for="taskDesc">Task description</label>
           <input type="text" id="taskDesc" name="taskDesc" placeholder="you task description.." />
           <p />
           <label for="important">Is this task important ?</label>
@@ -360,7 +369,7 @@ function App() {
             <option value="no">No</option>
           </select>
           <p />
-          <label for="argent">Is this task argent ?</label>
+          <label for="argent">Is this task urgent ?</label>
           <select id="argent" name="argent">
             <option value="yes">Yes</option>
             <option value="no">No</option>
@@ -499,7 +508,7 @@ function App() {
                   }}
                 >
                   <img
-                  alt='add todo'
+                    alt='add todo'
                     style={{
                       height: 30, width: 30
                     }}
@@ -663,6 +672,40 @@ function App() {
                           </div>
                         )
                       }
+
+                      <div className='taskUpdate' id='taskUpdate' >
+                        <h4>Task update :-</h4>
+                        {
+                          todo.completed.map((item) =>
+                            <>
+                              <span><b>-</b> I have worked on {item.title} (Done) </span><br></br>
+                              &nbsp;&nbsp;&nbsp;{item?.description != null && item.description != "" && `${item.description}`}
+                              <p></p>
+                            </>
+                          )
+                        }
+                        {
+                          todo.task.map((item) =>
+                            <>
+                              <b>-</b> I have worked on {item.title} (In Progress)<br></br>
+                              &nbsp;&nbsp;&nbsp;{item?.description != null && item.description != "" && `${item.description}`}
+                              <p></p>
+                            </>
+                          )
+                        }
+
+                      </div>
+                      {
+                        (todo.task.length > 0 || todo.completed.length > 0) &&
+                        <div
+                          className='addTodoButton'
+                          onClick={() => {
+                            toastr.success("task update is copied");
+                            copyToClipboard()
+                          }}
+                        >
+                          <span>Copy task update</span>
+                        </div>}
                     </div>
                   </div>
                 </div>
