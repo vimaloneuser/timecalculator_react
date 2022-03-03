@@ -679,7 +679,7 @@ function App() {
                           todo.completed.map((item) =>
                             <>
                               <span><b>-</b> I have worked on {item.title} (Done) </span><br></br>
-                              &nbsp;&nbsp;&nbsp;{item?.description != null && item.description != "" && `${item.description}`}
+                              &nbsp;&nbsp;&nbsp;{item?.description !== null && item.description !== "" && `${item.description}`}
                               <p></p>
                             </>
                           )
@@ -688,7 +688,7 @@ function App() {
                           todo.task.map((item) =>
                             <>
                               <b>-</b> I have worked on {item.title} (In Progress)<br></br>
-                              &nbsp;&nbsp;&nbsp;{item?.description != null && item.description != "" && `${item.description}`}
+                              &nbsp;&nbsp;&nbsp;{item?.description !== null && item.description !== "" && `${item.description}`}
                               <p></p>
                             </>
                           )
